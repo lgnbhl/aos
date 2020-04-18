@@ -1,5 +1,4 @@
-#' Use AniView
-#'
+#' Use aos
 #'
 #' @param disable boolean. Accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
 #' @param startEvent string. Name of the event dispatched on the document, that AOS should initialize on
@@ -11,12 +10,14 @@
 #' @param throttleDelay string. The delay on throttle used while scrolling the page (advanced)
 #' @param offset string. Change offset to trigger animations sooner or later, in px
 #' @param duration string. Duration of animation in ms.
-#' @param easing string. timing function to animate elements nicely
-#' @param delay string.
+#' @param easing string. Timing function to animate elements nicely
+#' @param delay string. Delay animation (ms)
 #' @param disable string. Condition when AOS should be disabled, for example 'mobile'
 #' 
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags tagList
+#' 
+#' @return Javascript code initializing aos with dependencies.
 #' 
 #' @examples
 #' if (interactive()) {

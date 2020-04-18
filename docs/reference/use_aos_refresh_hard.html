@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Animate element on scroll — aos • aos</title>
+<title>Refresh hard aos — use_aos_refresh_hard • aos</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Animate element on scroll — aos" />
-<meta property="og:description" content="Animate on scroll a Shiny or R Markdown element." />
+<meta property="og:title" content="Refresh hard aos — use_aos_refresh_hard" />
+<meta property="og:description" content="Reinit array with AOS elements and trigger refresh (called on DOM changes that are related to aos elements)" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -138,96 +138,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Animate element on scroll</h1>
-    <small class="dont-index">Source: <a href='https://github.com/lgnbhl/aos/blob/master/R/aos.R'><code>R/aos.R</code></a></small>
-    <div class="hidden name"><code>aos.Rd</code></div>
+    <h1>Refresh hard aos</h1>
+    <small class="dont-index">Source: <a href='https://github.com/lgnbhl/aos/blob/master/R/use_aos_refresh.R'><code>R/use_aos_refresh.R</code></a></small>
+    <div class="hidden name"><code>use_aos_refresh_hard.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Animate on scroll a Shiny or R Markdown element.</p>
+    <p>Reinit array with AOS elements and trigger refresh (called on DOM changes that are related to aos elements)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aos</span>(
-  <span class='no'>element</span>,
-  <span class='no'>animation</span>,
-  <span class='kw'>offset</span> <span class='kw'>=</span> <span class='st'>"120"</span>,
-  <span class='kw'>duration</span> <span class='kw'>=</span> <span class='st'>"400"</span>,
-  <span class='kw'>easing</span> <span class='kw'>=</span> <span class='st'>"ease"</span>,
-  <span class='kw'>delay</span> <span class='kw'>=</span> <span class='st'>"0"</span>,
-  <span class='kw'>anchor</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>anchor_placement</span> <span class='kw'>=</span> <span class='st'>"top-bottom"</span>,
-  <span class='kw'>once</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>use_aos_refresh_hard</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>element</th>
-      <td><p>An shiny or rmarkdown element.</p></td>
-    </tr>
-    <tr>
-      <th>animation</th>
-      <td><p>An animation from <a href='https://github.com/michalsnik/aos/tree/v2#-animations'>AOS</a></p></td>
-    </tr>
-    <tr>
-      <th>offset</th>
-      <td><p>string. Change offset to trigger animations sooner or later, px</p></td>
-    </tr>
-    <tr>
-      <th>duration</th>
-      <td><p>string. Duration of animation in ms</p></td>
-    </tr>
-    <tr>
-      <th>easing</th>
-      <td><p>string. Choose timing function to ease elements in different ways</p></td>
-    </tr>
-    <tr>
-      <th>delay</th>
-      <td><p>string. Delay animation in ms</p></td>
-    </tr>
-    <tr>
-      <th>anchor</th>
-      <td><p>string. Anchor placement</p></td>
-    </tr>
-    <tr>
-      <th>anchor_placement</th>
-      <td><p>string. Anchor placement - which one position of element on the screen should trigger animation</p></td>
-    </tr>
-    <tr>
-      <th>once</th>
-      <td><p>boolean.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional class element</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Javascript code animating the element.</p>
+    <p>Javascript code</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-     <span class='fu'><a href='use_aos.html'>use_aos</a></span>(), <span class='co'># add use_aos() in the UI</span>
-     <span class='fu'>aos</span>(<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"Shiny with AOS - Animate On Scroll"</span>), <span class='kw'>animation</span> <span class='kw'>=</span> <span class='st'>"fade-zoom-in"</span>),
-     <span class='fu'>aos</span>(<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"text"</span>), <span class='kw'>animation</span> <span class='kw'>=</span> <span class='st'>"fade-up"</span>)
-   ),
-  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
-    <span class='no'>output</span>$<span class='no'>text</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({ <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>"An animated text."</span>) })
-  }
- )
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>use_aos_refresh_hard</span>()</div><div class='output co'>#&gt; &lt;script&gt;$(document).ready(function(){
+#&gt;             AOS.refreshHard();
+#&gt;         });&lt;/script&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

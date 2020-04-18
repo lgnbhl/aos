@@ -2,6 +2,8 @@
 
 export(aos)
 export(use_aos)
+export(use_aos_refresh)
+export(use_aos_refresh_hard)
 importFrom(htmltools,tagAppendAttributes)
 importFrom(htmltools,tagList)
 importFrom(htmltools,tags)

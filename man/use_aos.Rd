@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_aos.R
 \name{use_aos}
 \alias{use_aos}
-\title{Use AniView}
+\title{Use aos}
 \usage{
 use_aos(
   disable = FALSE,
@@ -40,12 +40,15 @@ use_aos(
 
 \item{duration}{string. Duration of animation in ms.}
 
-\item{easing}{string. timing function to animate elements nicely}
+\item{easing}{string. Timing function to animate elements nicely}
 
-\item{delay}{string.}
+\item{delay}{string. Delay animation (ms)}
+}
+\value{
+Javascript code initializing aos with dependencies.
 }
 \description{
-Use AniView
+Use aos
 }
 \examples{
 if (interactive()) {

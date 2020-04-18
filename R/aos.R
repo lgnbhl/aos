@@ -15,6 +15,8 @@
 #'
 #' @importFrom htmltools tagAppendAttributes
 #'
+#' @return Javascript code animating the element.
+#'
 #' @examples 
 #' if (interactive()) {
 #'  library(shiny)

@@ -24,3 +24,5 @@ reference:
     contents: 
       - use_aos
       - aos
+      - use_aos_refresh
+      - use_aos_refresh_hard

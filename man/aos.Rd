@@ -38,6 +38,9 @@ aos(
 
 \item{...}{Additional class element}
 }
+\value{
+Javascript code animating the element.
+}
 \description{
 Animate on scroll a Shiny or R Markdown element.
 }

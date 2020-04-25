@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animate on Scroll Library for Shiny • aos</title>
+<title>Animate on Scroll Library for shiny • aos</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -16,8 +16,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Animate on Scroll Library for Shiny">
-<meta property="og:description" content="Animate on Scroll Shiny and R Markdown Content thanks to AOS.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Animate on Scroll Library for shiny">
+<meta property="og:description" content="Trigger animation effects on scroll on any HTML element 
+    of shiny and rmarkdown, such as any text or plot, thanks to 
+    the AOS Animate On Scroll jQuery library.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -107,55 +109,57 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>Install the package from Github.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"lgnbhl/aos"</span>)</a></code></pre></div>
+<p>Install the released version from CRAN.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"aos"</span>)</a></code></pre></div>
+<p>To get a bug fix, or use a feature from the development version, you can install it from GitHub.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"lgnbhl/aos"</span>)</a></code></pre></div>
 </div>
 <div id="shiny" class="section level2">
 <h2 class="hasAnchor">
 <a href="#shiny" class="anchor"></a>Shiny</h2>
 <p>In order to use the {aos} package, you must first call <code><a href="reference/use_aos.html">use_aos()</a></code> in the apps’ UI.</p>
 <p>Then simply apply <code><a href="reference/aos.html">aos()</a></code> to any Shiny element with an animation and other arguments such as <code>duration</code>, <code>delay</code> or <code>easing</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(aos)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">ui =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="dt">align =</span> <span class="st">"center"</span>,</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="kw"><a href="reference/use_aos.html">use_aos</a></span>(<span class="dt">disable =</span> <span class="st">"mobile"</span>), <span class="co"># add use_aos() in the UI</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="kw"><a href="reference/aos.html">aos</a></span>(</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">      <span class="dt">element =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">h1</a></span>(<span class="st">"Shiny with AOS - Animation On Scroll"</span>), </a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">      <span class="dt">animation =</span> <span class="st">"fade-up"</span>, </a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">      <span class="dt">duration =</span> <span class="st">"3000"</span>),</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(),</a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="kw"><a href="reference/aos.html">aos</a></span>(</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">      <span class="dt">element =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>), </a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">      <span class="dt">animation =</span> <span class="st">"flip-left"</span>, </a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">      <span class="dt">delay =</span> <span class="st">"200"</span>,</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">      <span class="dt">duration =</span> <span class="st">"2000"</span>,</a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">      <span class="dt">easing =</span> <span class="st">"ease-out-cubic"</span>)</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">  ),</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">  server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">    output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">      <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(mpg, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(displ, hwy, <span class="dt">colour =</span> class)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="st">        </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">    })</a>
-<a class="sourceLine" id="cb2-26" data-line-number="26">  }</a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(aos)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">ui =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">align =</span> <span class="st">"center"</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="kw"><a href="reference/use_aos.html">use_aos</a></span>(<span class="dt">disable =</span> <span class="st">"mobile"</span>), <span class="co"># add use_aos() in the UI</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="kw"><a href="reference/aos.html">aos</a></span>(</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">      <span class="dt">element =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">h1</a></span>(<span class="st">"Shiny with AOS - Animation On Scroll"</span>), </a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">      <span class="dt">animation =</span> <span class="st">"fade-up"</span>, </a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">      <span class="dt">duration =</span> <span class="st">"3000"</span>),</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(),</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="kw"><a href="reference/aos.html">aos</a></span>(</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">      <span class="dt">element =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>), </a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">      <span class="dt">animation =</span> <span class="st">"flip-left"</span>, </a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">      <span class="dt">delay =</span> <span class="st">"200"</span>,</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">      <span class="dt">duration =</span> <span class="st">"2000"</span>,</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">      <span class="dt">easing =</span> <span class="st">"ease-out-cubic"</span>)</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">  ),</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">    output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">      <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(mpg, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(displ, hwy, <span class="dt">colour =</span> class)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">        </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">    })</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">  }</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">)</a></code></pre></div>
 <p>The function <code><a href="reference/aos.html">aos()</a></code> doesn’t work (yet) with <a href="https://www.htmlwidgets.org/">htmlwidgets</a>.</p>
 <div id="customize-your-animations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#customize-your-animations" class="anchor"></a>Customize your animations</h3>
 <p>The <code><a href="reference/use_aos.html">use_aos()</a></code> allows to parameter global settings as well as overrid default <code><a href="reference/aos.html">aos()</a></code> arguments.</p>
 <p>For example, you can change the offset to trigger animations later (200px instead of the default 120px), the duration of the animations (600ms instead of 400ms), the easing (“ease-in-sine” instead of “ease”), the delay (300ms instead of 0ms) or disable the animation for mobile phones (global setting).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">aos<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/aos/man/use_aos.html">use_aos</a></span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">offset =</span> <span class="st">"200"</span>, </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">duration =</span> <span class="st">"600"</span>, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">easing =</span> <span class="st">"ease-in-sine"</span>, </a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">delay =</span> <span class="st">"300"</span>, </a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">disable =</span> <span class="st">"mobile"</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  )</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">aos<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/aos/man/use_aos.html">use_aos</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">offset =</span> <span class="st">"200"</span>, </a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">duration =</span> <span class="st">"600"</span>, </a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">easing =</span> <span class="st">"ease-in-sine"</span>, </a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">delay =</span> <span class="st">"300"</span>, </a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">disable =</span> <span class="st">"mobile"</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  )</a></code></pre></div>
 <p>Check out the <a href="https://github.com/michalsnik/aos/tree/v2#-animations">aos documentation</a> to learn about all the attributes available for <code><a href="reference/use_aos.html">use_aos()</a></code> and <code><a href="reference/aos.html">aos()</a></code>.</p>
 <p>The arguments <code>duration</code> and <code>delay</code> accept only values from “50” to “3000”, with step 50ms.</p>
 <p>The attribute <code>anchor_placement</code> allows to set different placement option, for example <code>top-center</code>, i.e. the animation will be triggered when <code>top</code> of element will reach <code>center</code> of the window.</p>
@@ -165,14 +169,14 @@
 <h2 class="hasAnchor">
 <a href="#r-markdown" class="anchor"></a>R Markdown</h2>
 <p>To animate a element of a R Markdown document, you must first call <code><a href="reference/use_aos.html">use_aos()</a></code> inside a R code chunk with <code>{r, echo = FALSE}</code> so the code will not be shown in the final document.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="st">`</span><span class="dt"></span><span class="st">``</span><span class="dt">{r, echo = FALSE}</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="dt">aos::use_aos()</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">`</span><span class="st">``</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="st">`</span><span class="dt"></span><span class="st">``</span><span class="dt">{r, echo = FALSE}</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">aos::use_aos()</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">`</span><span class="st">``</span></a></code></pre></div>
 <p>Then you can animate any content of your R Markdown document using the <code>:::</code> markers of the <code>rmarkdown</code> package followed by <code>{data-aos="ANIMATION_EFFECT" data-aos-ARGUMENT="ARGUMENT_OPTION"}</code>. The animation effects are listed in the documentation <a href="https://github.com/michalsnik/aos/tree/v2#-animations">here</a>.</p>
 <p>Below an example with the “fade-up” animation with other arguments.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb5-1" data-line-number="1">::: {data-aos="fade-up" data-aos-duration="2000" data-aos-offset="0"}</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">This element will be animated.</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">:::</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb6-1" data-line-number="1">::: {data-aos="fade-up" data-aos-duration="2000" data-aos-offset="0"}</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">This element will be animated.</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">:::</a></code></pre></div>
 </div>
 </div>
 

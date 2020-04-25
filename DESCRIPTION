@@ -1,5 +1,5 @@
 Package: aos
-Title: Animate on Scroll Library for Shiny
+Title: Animate on Scroll Library for 'shiny'
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Félix",
@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "felix.luginbuhl@protonmail.ch")
       )
-Description: Animate on Scroll Shiny and R Markdown Content thanks to 'AOS'.
+Description: Trigger animation effects on scroll on any HTML element 
+    of 'shiny' and 'rmarkdown', such as any text or plot, thanks to 
+    the 'AOS' Animate On Scroll jQuery library.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

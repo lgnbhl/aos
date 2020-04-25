@@ -15,7 +15,14 @@ to [AOS - Animate On Scroll](http://michalsnik.github.io/aos/).
 
 ## Installation
 
-Install the package from Github.
+Install the released version from CRAN.
+
+``` r
+install.packages("aos")
+```
+
+To get a bug fix, or use a feature from the development version, you can
+install it from GitHub.
 
 ``` r
 # install.packages("remotes")

@@ -1,23 +1,17 @@
 Package: aos
+Type: Package
 Title: Animate on Scroll Library for 'shiny'
 Version: 0.1.0
-Authors@R: 
-    c(person(given = "Félix",
-           family = "Luginbuhl",
-           role = c("aut", "cre"),
-           email = "felix.luginbuhl@protonmail.ch")
-      )
-Description: Trigger animation effects on scroll on any HTML element 
-    of 'shiny' and 'rmarkdown', such as any text or plot, thanks to 
-    the 'AOS' Animate On Scroll jQuery library.
+Authors@R: c(person(given = "Félix", family = "Luginbuhl", role = c("aut", "cre"), 
+    email = "felix.luginbuhl@protonmail.ch"))
+Description: Trigger animation effects on scroll on any HTML element of 'shiny' 
+    and 'rmarkdown', such as any text or plot, thanks to the 'AOS' Animate On Scroll 
+    jQuery library <http://michalsnik.github.io/aos/>.
 License: MIT + file LICENSE
+URL: https://felixluginbuhl.com/aos, https://github.com/lgnbhl/aos
+BugReports: https://github.com/lgnbhl/aos/issues
+Imports: jsonlite, htmltools
+Suggests: shiny
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
-Imports: 
-    jsonlite,
-    htmltools
-Suggests: 
-    shiny
-URL: https://felixluginbuhl.com/aos, https://github.com/lgnbhl/aos
-BugReports: https://github.com/lgnbhl/aos/issues

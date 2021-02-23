@@ -13,6 +13,7 @@
 #' @param easing string. Timing function to animate elements nicely
 #' @param delay string. Delay animation (ms)
 #' @param disable string. Condition when AOS should be disabled, for example 'mobile'
+#' @param use_cdn use CDN (by default) or use locally stored files.
 #' 
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags tagList
@@ -48,7 +49,8 @@ use_aos <- function(
   offset = "120",
   duration = "400",
   easing = 'ease',
-  delay = "0"
+  delay = "0",
+  use_cdn = TRUE
 ){
   options <- list(
     disable = disable, # accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
@@ -80,27 +82,53 @@ use_aos <- function(
   )
 }
 
-html_dependencies_aos <- function() {
-  list(
-    htmltools::htmlDependency(
-      name = "aos-js",
+#' aos dependencies
+#' 
+#' Get aos html dependencies.
+#' 
+#' @param use_cdn use CDN (by default) or use locally stored files.
+#' 
+#' @importFrom htmltools tagList htmlDependency
+#' 
+#' @rdname oas-dependencies
+#' 
+#' @export
+
+html_dependencies_aos <- function(use_cdn = TRUE) {
+  
+  # animate.css
+  if(use_cdn)
+    aos_css <- htmltools::htmlDependency(
+      name = "aosjs",
       version = "2.3.4",
-      package = "aos",
-      src = c(
-        file = "aos-js-2.3.4",
-        url = ""
-      ),
-    script = "aos.js"
-    ),
-    htmltools::htmlDependency(
-      name = "aos-css",
-      version = "2.3.4",
-      package = "aos",
-      src = c(
-        file = "aos-css-2.3.4",
-        url = ""
-      ),
+      src = c(href = "https://unpkg.com/aos@2.3.4/dist/"),
       stylesheet = "aos.css"
     )
-  )
+  else 
+    aos_css <- htmltools::htmlDependency(
+      name = "aosjs",
+      version = "2.3.4",
+      src = "",
+      stylesheet = c(file = "assets/aos.css"),
+      package = "aos"
+    )
+  
+  # jquery-aniview
+  if(use_cdn)
+    aos_js <- htmltools::htmlDependency(
+      name = "aoscss",
+      version = "2.3.4",
+      src = c(href = "https://unpkg.com/aos@2.3.4/dist/"),
+      script = "aos.js"
+    )
+  else 
+    aos_js <- htmltools::htmlDependency(
+      name = "aoscss",
+      version = "2.3.4",
+      src = "",
+      script = c(file = "assets/aos.js"),
+      package = "aos"
+    )
+  
+  htmltools::tagList(aos_css, aos_js)
 }

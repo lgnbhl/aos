@@ -16,7 +16,8 @@ use_aos(
   offset = "120",
   duration = "400",
   easing = "ease",
-  delay = "0"
+  delay = "0",
+  use_cdn = TRUE
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ use_aos(
 \item{easing}{string. Timing function to animate elements nicely}
 
 \item{delay}{string. Delay animation (ms)}
+
+\item{use_cdn}{use CDN (by default) or use locally stored files.}
 }
 \value{
 Javascript code initializing aos with dependencies.

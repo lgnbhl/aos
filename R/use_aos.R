@@ -99,14 +99,14 @@ html_dependencies_aos <- function(use_cdn = TRUE) {
   # animate.css
   if(use_cdn)
     aos_css <- htmltools::htmlDependency(
-      name = "aosjs",
+      name = "aoscss",
       version = "2.3.4",
       src = c(href = "https://unpkg.com/aos@2.3.4/dist/"),
       stylesheet = "aos.css"
     )
   else 
     aos_css <- htmltools::htmlDependency(
-      name = "aosjs",
+      name = "aoscss",
       version = "2.3.4",
       src = "",
       stylesheet = c(file = "assets/aos.css"),
@@ -116,14 +116,14 @@ html_dependencies_aos <- function(use_cdn = TRUE) {
   # jquery-aniview
   if(use_cdn)
     aos_js <- htmltools::htmlDependency(
-      name = "aoscss",
+      name = "aosjs",
       version = "2.3.4",
       src = c(href = "https://unpkg.com/aos@2.3.4/dist/"),
       script = "aos.js"
     )
   else 
     aos_js <- htmltools::htmlDependency(
-      name = "aoscss",
+      name = "aosjs",
       version = "2.3.4",
       src = "",
       script = c(file = "assets/aos.js"),

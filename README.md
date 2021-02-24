@@ -114,9 +114,9 @@ To animate a element of a R Markdown document, you must first call
 will not be shown in the final document.
 
 ``` r
-```{r, echo = FALSE}
+```{r, echo = FALSE}
 aos::use_aos()
-```
+```
 ```
 
 Then you can animate any content of your R Markdown document using the

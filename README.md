@@ -44,7 +44,8 @@ other arguments such as `duration`, `delay` or `easing`.
 
 ``` r
 library(shiny)
-library(ggplot2)
+library(tidyverse)
+library(ggrepel)
 library(aos)
 
 shinyApp(
@@ -52,21 +53,23 @@ shinyApp(
     align = "center",
     use_aos(disable = "mobile"), # add use_aos() in the UI
     aos(
-      element = h1("Shiny with AOS - Animation On Scroll"), 
+      element = h1("AOS - Animation On Scroll"), 
       animation = "fade-up", 
       duration = "3000"),
     br(), br(), br(), br(),
     aos(
       element = plotOutput("plot"), 
       animation = "flip-left", 
-      delay = "200",
+      delay = "300",
       duration = "2000",
       easing = "ease-out-cubic")
   ),
   server <- function(input, output, session) {
     output$plot <- renderPlot({
-      ggplot(mpg, aes(displ, hwy, colour = class)) + 
-        geom_point()
+      ggplot(starwars, aes(mass, height)) + 
+        geom_point(aes(color = gender)) +
+        geom_label_repel(aes(label = name), size = 3) +
+        labs(title = "Star Wars Characters Body Mass Index")
     })
   }
 )

@@ -70,7 +70,7 @@ use_aos <- function(
   options <- jsonlite::toJSON(options, auto_unbox = TRUE)
   
   htmltools::tagList(
-    html_dependencies_aos(),
+    html_dependencies_aos(use_cdn),
     htmltools::tags$script(
       sprintf(
         "$(document).ready(function(){

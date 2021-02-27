@@ -45,7 +45,7 @@ use_aos(
 
 \item{delay}{string. Delay animation (ms)}
 
-\item{use_cdn}{use CDN (by default) or use locally stored files.}
+\item{use_cdn}{boolean. TRUE to use a Content Delivery Network (CDN), true by default, or false to use locally stored files.}
 }
 \value{
 Javascript code initializing aos with dependencies.

@@ -13,7 +13,7 @@
 #' @param easing string. Timing function to animate elements nicely
 #' @param delay string. Delay animation (ms)
 #' @param disable string. Condition when AOS should be disabled, for example 'mobile'
-#' @param use_cdn use CDN (by default) or use locally stored files.
+#' @param use_cdn boolean. TRUE to use a Content Delivery Network (CDN), true by default, or false to use locally stored files.
 #' 
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags tagList
@@ -86,7 +86,7 @@ use_aos <- function(
 #' 
 #' Get aos html dependencies.
 #' 
-#' @param use_cdn use CDN (by default) or use locally stored files.
+#' @param use_cdn boolean. TRUE to use a Content Delivery Network (CDN), true by default, or false to use locally stored files.
 #' 
 #' @importFrom htmltools tagList htmlDependency
 #' 

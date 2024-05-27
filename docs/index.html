@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Trigger animation effects on scroll on any HTML element of shiny and rmarkdown, such as any text or plot, thanks to the AOS Animate On Scroll jQuery library &lt;http://michalsnik.github.io/aos/&gt;.">
 <title>Animate on Scroll Library for shiny • aos</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -12,225 +13,236 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Animate on Scroll Library for shiny">
-<meta property="og:description" content="Trigger animation effects on scroll on any HTML element 
-    of shiny and rmarkdown, such as any text or plot, thanks to 
-    the AOS Animate On Scroll jQuery library.">
-<meta property="og:image" content="/logo.png">
-<meta name="twitter:card" content="summary">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Animate on Scroll Library for shiny">
+<meta property="og:description" content="Trigger animation effects on scroll on any HTML element of shiny and rmarkdown, such as any text or plot, thanks to the AOS Animate On Scroll jQuery library &lt;http://michalsnik.github.io/aos/&gt;.">
+<meta property="og:image" content="https://felixluginbuhl.com/aos/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-158089797-1"></script><script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-158089797-1');
-</script>
+<![endif]-->
 </head>
 <body>
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">aos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
-      </span>
-    </div>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">Home</a>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">aos</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item">
+  <a class="nav-link" href="index.html">Home</a>
 </li>
-<li>
-  <a href="reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">News</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://www.linkedin.com/in/felixluginbuhl">
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.linkedin.com/in/felixluginbuhl">
     <span class="fa fa-linkedin"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://twitter.com/FelixLuginbuhl">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://twitter.com/FelixLuginbuhl">
     <span class="fa fa-twitter"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://github.com/lgnbhl/aos">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/lgnbhl/aos">
     <span class="fa fa-github"></span>
      
   </a>
 </li>
-<li>
-  <a href="http://felixluginbuhl.com">
+<li class="nav-item">
+  <a class="external-link nav-link" href="http://felixluginbuhl.com">
     <span class="fa fa-home"></span>
      
   </a>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9">
+<div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="aos-">aos <a class="anchor" aria-label="anchor" href="#aos-"></a>
+</h1>
 </div>
-<!--/.navbar -->
-
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-
-
-<div id="aos" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#aos" class="anchor"></a>aos <img src="reference/figures/logo.png" align="right">
-</h1></div>
 <blockquote>
 <p>Animate on Scroll Library for Shiny</p>
 </blockquote>
-<p>The package <code>aos</code> allows to animate on scroll elements in R Shiny thanks to <a href="http://michalsnik.github.io/aos/">AOS - Animate On Scroll</a>.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p><strong>aos</strong> allows to animate on scroll elements in R Shiny thanks to <a href="http://michalsnik.github.io/aos/" class="external-link">AOS - Animate On Scroll</a>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>Install the released version from CRAN.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"aos"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"aos"</span><span class="op">)</span></span></code></pre></div>
 <p>To get a bug fix, or use a feature from the development version, you can install it from GitHub.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"lgnbhl/aos"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lgnbhl/aos"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="shiny" class="section level2">
-<h2 class="hasAnchor">
-<a href="#shiny" class="anchor"></a>Shiny</h2>
-<p>In order to use the {aos} package, you must first call <code><a href="reference/use_aos.html">use_aos()</a></code> in the apps’ UI.</p>
+<div class="section level2">
+<h2 id="shiny">Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
+</h2>
+<p>In order to use the <strong>aos</strong> package, you must first call <code><a href="reference/use_aos.html">use_aos()</a></code> in the apps’ UI.</p>
 <p>Then simply apply <code><a href="reference/aos.html">aos()</a></code> to any Shiny element with an animation and other arguments such as <code>duration</code>, <code>delay</code> or <code>easing</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(aos)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">ui =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">align =</span> <span class="st">"center"</span>,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="kw"><a href="reference/use_aos.html">use_aos</a></span>(<span class="dt">disable =</span> <span class="st">"mobile"</span>), <span class="co"># add use_aos() in the UI</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="kw"><a href="reference/aos.html">aos</a></span>(</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">      <span class="dt">element =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">h1</a></span>(<span class="st">"Shiny with AOS - Animation On Scroll"</span>), </a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">      <span class="dt">animation =</span> <span class="st">"fade-up"</span>, </a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">      <span class="dt">duration =</span> <span class="st">"3000"</span>),</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(), <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(),</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="kw"><a href="reference/aos.html">aos</a></span>(</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">      <span class="dt">element =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span>(<span class="st">"plot"</span>), </a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">      <span class="dt">animation =</span> <span class="st">"flip-left"</span>, </a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">      <span class="dt">delay =</span> <span class="st">"200"</span>,</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">      <span class="dt">duration =</span> <span class="st">"2000"</span>,</a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">      <span class="dt">easing =</span> <span class="st">"ease-out-cubic"</span>)</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">  ),</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">  server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">      <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(mpg, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(displ, hwy, <span class="dt">colour =</span> class)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">        </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">    })</a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">  }</a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">)</a></code></pre></div>
-<p>The function <code><a href="reference/aos.html">aos()</a></code> doesn’t work (yet) with <a href="https://www.htmlwidgets.org/">htmlwidgets</a>.</p>
-<div id="customize-your-animations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#customize-your-animations" class="anchor"></a>Customize your animations</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/" class="external-link">ggrepel</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://felixluginbuhl.com/aos">aos</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
+<span>  ui <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>    align <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>    <span class="fu"><a href="reference/use_aos.html">use_aos</a></span><span class="op">(</span>disable <span class="op">=</span> <span class="st">"mobile"</span><span class="op">)</span>, <span class="co"># add use_aos() in the UI</span></span>
+<span>    <span class="fu"><a href="reference/aos.html">aos</a></span><span class="op">(</span></span>
+<span>      element <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"AOS - Animation On Scroll"</span><span class="op">)</span>, </span>
+<span>      animation <span class="op">=</span> <span class="st">"fade-zoom-in"</span>, </span>
+<span>      duration <span class="op">=</span> <span class="st">"1000"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="reference/aos.html">aos</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">textOutput</a></span><span class="op">(</span><span class="st">"text"</span><span class="op">)</span>, animation <span class="op">=</span> <span class="st">"fade-up"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="reference/aos.html">aos</a></span><span class="op">(</span></span>
+<span>      element <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span>
+<span>        inputId <span class="op">=</span> <span class="st">"button"</span>, </span>
+<span>        label <span class="op">=</span> <span class="st">"See live demo"</span>,</span>
+<span>        onclick <span class="op">=</span> <span class="st">"window.open('http://michalsnik.github.io/aos/', '_blank')"</span><span class="op">)</span>,</span>
+<span>      animation <span class="op">=</span> <span class="st">"fade-up"</span>,</span>
+<span>      duration <span class="op">=</span> <span class="st">"3000"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">output</span><span class="op">$</span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderText</a></span><span class="op">(</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"An animated text."</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The function <code><a href="reference/aos.html">aos()</a></code> doesn’t work (yet) with <a href="https://www.htmlwidgets.org/" class="external-link">htmlwidgets</a>.</p>
+<div class="section level3">
+<h3 id="customize-your-animations">Customize your animations<a class="anchor" aria-label="anchor" href="#customize-your-animations"></a>
+</h3>
 <p>The <code><a href="reference/use_aos.html">use_aos()</a></code> allows to parameter global settings as well as overrid default <code><a href="reference/aos.html">aos()</a></code> arguments.</p>
 <p>For example, you can change the offset to trigger animations later (200px instead of the default 120px), the duration of the animations (600ms instead of 400ms), the easing (“ease-in-sine” instead of “ease”), the delay (300ms instead of 0ms) or disable the animation for mobile phones (global setting).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">aos<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/aos/man/use_aos.html">use_aos</a></span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">offset =</span> <span class="st">"200"</span>, </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">duration =</span> <span class="st">"600"</span>, </a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">easing =</span> <span class="st">"ease-in-sine"</span>, </a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">delay =</span> <span class="st">"300"</span>, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">disable =</span> <span class="st">"mobile"</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  )</a></code></pre></div>
-<p>Check out the <a href="https://github.com/michalsnik/aos/tree/v2#-animations">aos documentation</a> to learn about all the attributes available for <code><a href="reference/use_aos.html">use_aos()</a></code> and <code><a href="reference/aos.html">aos()</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">aos</span><span class="fu">::</span><span class="fu"><a href="reference/use_aos.html">use_aos</a></span><span class="op">(</span></span>
+<span>  offset <span class="op">=</span> <span class="st">"200"</span>, </span>
+<span>  duration <span class="op">=</span> <span class="st">"600"</span>, </span>
+<span>  easing <span class="op">=</span> <span class="st">"ease-in-sine"</span>, </span>
+<span>  delay <span class="op">=</span> <span class="st">"300"</span>, </span>
+<span>  disable <span class="op">=</span> <span class="st">"mobile"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>Check out the <a href="https://github.com/michalsnik/aos/tree/v2#-animations" class="external-link">aos documentation</a> to learn about all the attributes available for <code><a href="reference/use_aos.html">use_aos()</a></code> and <code><a href="reference/aos.html">aos()</a></code>.</p>
 <p>The arguments <code>duration</code> and <code>delay</code> accept only values from “50” to “3000”, with step 50ms.</p>
 <p>The attribute <code>anchor_placement</code> allows to set different placement option, for example <code>top-center</code>, i.e. the animation will be triggered when <code>top</code> of element will reach <code>center</code> of the window.</p>
 </div>
 </div>
-<div id="r-markdown" class="section level2">
-<h2 class="hasAnchor">
-<a href="#r-markdown" class="anchor"></a>R Markdown</h2>
+<div class="section level2">
+<h2 id="r-markdown">R Markdown<a class="anchor" aria-label="anchor" href="#r-markdown"></a>
+</h2>
 <p>To animate a element of a R Markdown document, you must first call <code><a href="reference/use_aos.html">use_aos()</a></code> inside a R code chunk with <code>{r, echo = FALSE}</code> so the code will not be shown in the final document.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="st">`</span><span class="dt"></span><span class="st">``</span><span class="dt">{r, echo = FALSE}</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">aos::use_aos()</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">`</span><span class="st">``</span></a></code></pre></div>
-<p>Then you can animate any content of your R Markdown document using the <code>:::</code> markers of the <code>rmarkdown</code> package followed by <code>{data-aos="ANIMATION_EFFECT" data-aos-ARGUMENT="ARGUMENT_OPTION"}</code>. The animation effects are listed in the documentation <a href="https://github.com/michalsnik/aos/tree/v2#-animations">here</a>.</p>
-<p>Below an example with the “fade-up” animation with other arguments.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb6-1" data-line-number="1">::: {data-aos="fade-up" data-aos-duration="2000" data-aos-offset="0"}</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">This element will be animated.</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">:::</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r, echo = FALSE}</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="at">aos::use_aos()</span></span></code></pre></div>
+<pre><code>
+Then you can animate any content of your R Markdown document using the
+`:::` markers of the `rmarkdown` package followed by
+`{data-aos="ANIMATION_EFFECT" data-aos-ARGUMENT="ARGUMENT_OPTION"}`. The
+animation effects are listed in the documentation
+[here](https://github.com/michalsnik/aos/tree/v2#-animations).
+
+Below an example with the “fade-up” animation with other arguments.
+
+``` md
+::: {data-aos="fade-up" data-aos-duration="2000" data-aos-offset="0"}
+This element will be animated.
+:::</code></pre>
 </div>
 </div>
 
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div class="links">
-<h2>Links</h2>
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/lgnbhl/aos">https://​github.com/​lgnbhl/​aos</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/lgnbhl/aos/issues">https://​github.com/​lgnbhl/​aos/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=aos" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/lgnbhl/aos/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/lgnbhl/aos/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing aos</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Félix Luginbuhl <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=aos"><img src="https://www.r-pkg.org/badges/version/aos" alt="CRAN status"></a></li>
-<li><a href="https://gitlab.com/lgnbhl/aos/pipelines"><img src="https://gitlab.com/lgnbhl/aos/badges/master/pipeline.svg" alt="pipeline status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=aos" class="external-link"><img src="https://www.r-pkg.org/badges/version/aos" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=aos" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/aos" alt="Grand total"></a></li>
+<li><a href="https://github.com/lgnbhl/aos/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/lgnbhl/aos/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://www.linkedin.com/in/FelixLuginbuhl" class="external-link"><img src="https://img.shields.io/badge/LinkedIn-Follow-E4405F?style=social&amp;logo=linkedin" alt="LinkedIn"></a></li>
 </ul>
 </div>
-</div>
+
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p>Developed by Félix Luginbuhl.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

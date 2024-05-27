@@ -2,21 +2,17 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-
-[![CRAN
-status](https://www.r-pkg.org/badges/version/aos)](https://CRAN.R-project.org/package=aos)
-[![pipeline
-status](https://gitlab.com/lgnbhl/aos/badges/master/pipeline.svg)](https://gitlab.com/lgnbhl/aos/pipelines)
-[![R build
-status](https://github.com/lgnbhl/aos/workflows/R-CMD-check/badge.svg)](https://github.com/lgnbhl/aos/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/aos)](https://CRAN.R-project.org/package=aos)
+[![Grand total](https://cranlogs.r-pkg.org/badges/grand-total/aos)](https://cran.r-project.org/package=aos)
+[![R-CMD-check](https://github.com/lgnbhl/aos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lgnbhl/aos/actions/workflows/R-CMD-check.yaml)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-E4405F?style=social&logo=linkedin)](https://www.linkedin.com/in/FelixLuginbuhl)
 <!-- badges: end -->
 
 # aos <img src="man/figures/logo.png" align="right" />
 
 > Animate on Scroll Library for Shiny
 
-The package `aos` allows to animate on scroll elements in R Shiny thanks
-to [AOS - Animate On Scroll](http://michalsnik.github.io/aos/).
+**aos** allows to animate on scroll elements in R Shiny thanks to [AOS - Animate On Scroll](http://michalsnik.github.io/aos/).
 
 ## Installation
 
@@ -36,7 +32,7 @@ remotes::install_github("lgnbhl/aos")
 
 ## Shiny
 
-In order to use the {aos} package, you must first call `use_aos()` in
+In order to use the **aos** package, you must first call `use_aos()` in
 the apps’ UI.
 
 Then simply apply `aos()` to any Shiny element with an animation and
@@ -54,23 +50,19 @@ shinyApp(
     use_aos(disable = "mobile"), # add use_aos() in the UI
     aos(
       element = h1("AOS - Animation On Scroll"), 
-      animation = "fade-up", 
-      duration = "3000"),
-    br(), br(), br(), br(),
+      animation = "fade-zoom-in", 
+      duration = "1000"),
+    aos(textOutput("text"), animation = "fade-up"),
     aos(
-      element = plotOutput("plot"), 
-      animation = "flip-left", 
-      delay = "300",
-      duration = "2000",
-      easing = "ease-out-cubic")
+      element = shiny::actionButton(
+        inputId = "button", 
+        label = "See live demo",
+        onclick = "window.open('http://michalsnik.github.io/aos/', '_blank')"),
+      animation = "fade-up",
+      duration = "3000")
   ),
   server <- function(input, output, session) {
-    output$plot <- renderPlot({
-      ggplot(starwars, aes(mass, height)) + 
-        geom_point(aes(color = gender)) +
-        geom_label_repel(aes(label = name), size = 3) +
-        labs(title = "Star Wars Characters Body Mass Index")
-    })
+    output$text <- renderText({ print("An animated text.") })
   }
 )
 ```

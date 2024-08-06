@@ -8,7 +8,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-E4405F?style=social&logo=linkedin)](https://www.linkedin.com/in/FelixLuginbuhl)
 <!-- badges: end -->
 
-# aos <img src="man/figures/logo.png" align="right" />
+# aos <img src="man/figures/logo.png" align="right" width="138" />
 
 > Animate on Scroll Library for Shiny
 
